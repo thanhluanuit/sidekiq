@@ -1,4 +1,4 @@
-#Install Sidekiq
+# ActiveJob - Sidekiq Configuration
 1. Add gem 'sidekiq'
 2. Add sidekiq.rb to config/initializers/
 
@@ -16,7 +16,20 @@ end
 Redis url format: 'redis://ip:port'
 ```
 
-3. Add advance configuration: config/sidekiq.yml
+3. Setting queue adapter in config/application.rb
+
+```ruby
+module SidekiqApp
+  class Application < Rails::Application
+    # Be sure to have the adapter's gem in your Gemfile
+    # and follow the adapter's specific installation
+    # and deployment instructions.
+    config.active_job.queue_adapter = :sidekiq
+  end
+end
+```
+
+4. Advance configuration: config/sidekiq.yml
 ```
 :verbose: true
 development:
